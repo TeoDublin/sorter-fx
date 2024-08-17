@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static app.functions.alert;
+import static app.functions.load;
 import static app.functions.printError;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -60,10 +61,10 @@ public class ctrlInputs implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         title.setText(objGlobals.version);
-        objGlobals.etichette="";
-        objGlobals.jobSorter=new ArrayList<>();
-        objGlobals.gray="";
-        objGlobals.tiff="";
+        objGlobals.sourceEtichette="";
+        objGlobals.sourceJobSorter=new ArrayList<>();
+        objGlobals.sourceGray="";
+        objGlobals.sourceTiff="";
         objGlobals.stockPrefix="";
         objGlobals.stockNumber=0;
         etichette.setOnMouseClicked(event->etichette());
@@ -84,8 +85,8 @@ public class ctrlInputs implements Initializable {
         );
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            objGlobals.etichette=selectedFile.getAbsolutePath();
-            gifEtichette.setImage(new Image(App.class.getResource("done.gif").toExternalForm()));
+            objGlobals.sourceEtichette=selectedFile.getAbsolutePath();
+            gifEtichette.setImage(new Image(App.class.getResource("img/done.gif").toExternalForm()));
         }
     }
     @FXML
@@ -97,9 +98,9 @@ public class ctrlInputs implements Initializable {
         List<File> selectedFiles = fileChooser.showOpenMultipleDialog(null);
         if (selectedFiles != null) {
             for (File file : selectedFiles) {
-                objGlobals.jobSorter.add(file.getAbsolutePath());
+                objGlobals.sourceJobSorter.add(file.getAbsolutePath());
             }
-            gifJobSorter.setImage(new Image(App.class.getResource("done.gif").toExternalForm()));
+            gifJobSorter.setImage(new Image(App.class.getResource("img/done.gif").toExternalForm()));
         }
     }
     @FXML
@@ -110,8 +111,8 @@ public class ctrlInputs implements Initializable {
         Stage stage = (Stage) gray.getScene().getWindow();
         File selectedDirectory = directoryChooser.showDialog(stage);
         if (selectedDirectory != null) {
-            objGlobals.gray = selectedDirectory.getAbsolutePath();
-            gifGray.setImage(new Image(App.class.getResource("done.gif").toExternalForm()));
+            objGlobals.sourceGray = selectedDirectory.getAbsolutePath();
+            gifGray.setImage(new Image(App.class.getResource("img/done.gif").toExternalForm()));
         }
     }
     @FXML
@@ -121,8 +122,8 @@ public class ctrlInputs implements Initializable {
         Stage stage = (Stage) tiff.getScene().getWindow();
         File selectedDirectory = directoryChooser.showDialog(stage);
         if (selectedDirectory != null) {
-            objGlobals.tiff = selectedDirectory.getAbsolutePath();
-            gifTiff.setImage(new Image(App.class.getResource("done.gif").toExternalForm()));
+            objGlobals.sourceTiff = selectedDirectory.getAbsolutePath();
+            gifTiff.setImage(new Image(App.class.getResource("img/done.gif").toExternalForm()));
         }
     }
     @FXML
@@ -133,10 +134,10 @@ public class ctrlInputs implements Initializable {
             Pattern numberPattern = Pattern.compile("\\d+");
             Matcher number = numberPattern.matcher(stock);
             if (prefix.find() && number.find()) {
-                gifStock.setImage(new Image(App.class.getResource("done.gif").toExternalForm()));
+                gifStock.setImage(new Image(App.class.getResource("img/done.gif").toExternalForm()));
             }
             else{
-                gifStock.setImage(new Image(App.class.getResource("edit.gif").toExternalForm()));
+                gifStock.setImage(new Image(App.class.getResource("img/edit.gif").toExternalForm()));
             }
         }
     }    
@@ -158,7 +159,7 @@ public class ctrlInputs implements Initializable {
         String stockText = stockNumber.getText();
         if(stockText.isEmpty()){
             errors.add("INSERIRE NUMERO PACCO");
-            gifStock.setImage(new Image(App.class.getResource("error.gif").toExternalForm()));
+            gifStock.setImage(new Image(App.class.getResource("img/error.gif").toExternalForm()));
         }
         else{
             Pattern prefixPattern = Pattern.compile("[A-Za-z]+");
@@ -167,40 +168,32 @@ public class ctrlInputs implements Initializable {
             Matcher number = numberPattern.matcher(stockText);
             if(!prefix.find()||!number.find()){
                 errors.add("NUMERO PACCO DEVI COMINCIARE CON LETTERE E FINIRE CON NUMERI");
-                gifStock.setImage(new Image(App.class.getResource("error.gif").toExternalForm()));
+                gifStock.setImage(new Image(App.class.getResource("img/error.gif").toExternalForm()));
             }else{
                 objGlobals.stockPrefix=prefix.group();
                 objGlobals.stockNumber=Integer.parseInt(number.group());
             }
         }
-        if(objGlobals.etichette.isEmpty()){
+        if(objGlobals.sourceEtichette.isEmpty()){
             errors.add("INSERIRE IL FILE ETICHETTE");
-            gifEtichette.setImage(new Image(App.class.getResource("error.gif").toExternalForm()));
+            gifEtichette.setImage(new Image(App.class.getResource("img/error.gif").toExternalForm()));
         }
-        if(objGlobals.jobSorter.isEmpty()){
+        if(objGlobals.sourceJobSorter.isEmpty()){
             errors.add("INSERIRE ALMENO UN FILE JOBSORTER");
-            gifJobSorter.setImage(new Image(App.class.getResource("error.gif").toExternalForm()));
+            gifJobSorter.setImage(new Image(App.class.getResource("img/error.gif").toExternalForm()));
         }
-        if(objGlobals.gray.isEmpty()){
+        if(objGlobals.sourceGray.isEmpty()){
             errors.add("INSERIRE IL PERCORSO PER I FILE GRIGI");
-            gifGray.setImage(new Image(App.class.getResource("error.gif").toExternalForm()));
+            gifGray.setImage(new Image(App.class.getResource("img/error.gif").toExternalForm()));
         }
-        if(objGlobals.tiff.isEmpty()){
+        if(objGlobals.sourceTiff.isEmpty()){
             errors.add("INSERIRE IL PERCORSO PER I FILE TIFF");
-            gifTiff.setImage(new Image(App.class.getResource("error.gif").toExternalForm()));
+            gifTiff.setImage(new Image(App.class.getResource("img/error.gif").toExternalForm()));
         }
         if(!errors.isEmpty()){
             alert("INFORMAZIONI MANCANTI",errors);
         }else{
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("viewStatusBar.fxml"));
-                Parent root = loader.load();
-                Scene newScene = new Scene(root);
-                newScene.getStylesheets().add(App.class.getResource("styles.css").toExternalForm());
-                Stage stage = (Stage) btnFoward.getScene().getWindow();
-                stage.setScene(newScene);
-                stage.show();
-            } catch (IOException e) {printError(e);}
+            load("viewStatusBar");
         }
     }
 

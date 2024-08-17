@@ -1,17 +1,13 @@
 package app;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import static app.functions.alert;
-import static app.functions.printError;
+import static app.functions.load;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -43,24 +39,16 @@ public class ctrlWorkingFolder implements Initializable {
         File selectedDirectory = directoryChooser.showDialog(stage);
         if (selectedDirectory != null) {
             objGlobals.workingFolder = selectedDirectory.getAbsolutePath();
-            gifImageView.setImage(new Image(App.class.getResource("done.gif").toExternalForm()));
+            gifImageView.setImage(new Image(App.class.getResource("img/done.gif").toExternalForm()));
         }
     }
     @FXML
     public void openNextView() {
         if(objGlobals.workingFolder.isEmpty()){
             alert("INFORMAZIONI MANCANTI","SELEZIONA LA CARTELLA DOVE SARANNO LAVORATI I FILE");
-            gifImageView.setImage(new Image(App.class.getResource("error.gif").toExternalForm()));
+            gifImageView.setImage(new Image(App.class.getResource("img/error.gif").toExternalForm()));
         }else{
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("viewInputs.fxml"));
-                Parent root = loader.load();
-                Scene newScene = new Scene(root);
-                newScene.getStylesheets().add(App.class.getResource("styles.css").toExternalForm());
-                Stage stage = (Stage) btnFoward.getScene().getWindow();
-                stage.setScene(newScene);
-                stage.show();
-            } catch (IOException e) {printError(e);}
+            load("viewInputs");
         }
     }
 

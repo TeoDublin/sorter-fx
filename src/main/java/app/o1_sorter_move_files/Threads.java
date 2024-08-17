@@ -2,18 +2,21 @@ package app.o1_sorter_move_files;
 
 import java.util.ArrayList;
 
+import static app.functions.printError;
+import app.objGlobals;
+
 public class Threads extends functions{
     private static int runningThreads=0;
     private static final ArrayList<ThreaCopyFiles> list = new ArrayList<>();
 
-    public static void start(ThreaCopyFiles thread) throws Exception{ 
+    public static void start(ThreaCopyFiles thread) { 
         ArrayList<ThreaCopyFiles> toDelete = new ArrayList<>();
-        while(runningThreads>=totalThreads){
+        while(runningThreads>=objGlobals.totalThreadsMoveFiles){
             for(ThreaCopyFiles runningThread:list){
                 if(!runningThread.isRunning()&&!toDelete.contains(runningThread)){
                     if (runningThread.isCompletedSuccessfully()) {} 
-                    else if (runningThread.hasError()) { error("Thread error "+runningThread.from, runningThread.getException());} 
-                    else { error("Thread error dont know why "+runningThread.from, new Exception());}
+                    else if (runningThread.hasError()) { printError("Thread error "+runningThread.from, runningThread.getException());} 
+                    else { printError("Thread error dont know why "+runningThread.from, new Exception());}
                     toDelete.add(runningThread);runningThreads--;break;
                 }
             }
@@ -24,14 +27,14 @@ public class Threads extends functions{
         runningThreads++;
     }
 
-    public static void waitRunning() throws Exception{
+    public static void waitRunning() {
         ArrayList<ThreaCopyFiles> toDelete = new ArrayList<>();
         while(runningThreads>0){
             for(ThreaCopyFiles runningThread:list){
                 if(!runningThread.isRunning()&&!toDelete.contains(runningThread)){
                     if (runningThread.isCompletedSuccessfully()) { 
-                    } else if (runningThread.hasError()) { error("Thread error "+runningThread.from, runningThread.getException());
-                    } else { error("Thread error dont know why "+runningThread.from, new Exception());}
+                    } else if (runningThread.hasError()) { printError("Thread error "+runningThread.from, runningThread.getException());
+                    } else { printError("Thread error dont know why "+runningThread.from, new Exception());}
                     toDelete.add(runningThread);runningThreads--;
                 }
             }

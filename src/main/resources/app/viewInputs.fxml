@@ -39,7 +39,7 @@
                   </Label>
                   <ImageView fx:id="gifEtichette" fitHeight="48.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@edit.gif" />
+                        <Image url="@img/edit.gif" />
                      </image>
                   </ImageView>
                </children>
@@ -61,7 +61,7 @@
                   </Label>
                   <ImageView fx:id="gifJobSorter" fitHeight="48.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@edit.gif" />
+                        <Image url="@img/edit.gif" />
                      </image>
                   </ImageView>
                </children>
@@ -83,7 +83,7 @@
                   </Label>
                   <ImageView fx:id="gifGray" fitHeight="48.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@edit.gif" />
+                        <Image url="@img/edit.gif" />
                      </image>
                   </ImageView>
                </children>
@@ -105,7 +105,7 @@
                   </Label>
                   <ImageView fx:id="gifTiff" fitHeight="48.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@edit.gif" />
+                        <Image url="@img/edit.gif" />
                      </image>
                   </ImageView>
                </children>
@@ -136,7 +136,7 @@
                   </TextField>
                   <ImageView fx:id="gifStock" fitHeight="48.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@edit.gif" />
+                        <Image url="@img/edit.gif" />
                      </image>
                   </ImageView>
                </children>

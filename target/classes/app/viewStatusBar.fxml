@@ -54,7 +54,7 @@
                   </Label>
                   <ImageView fx:id="imgMoveFiles" fitHeight="48.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@edit.gif" />
+                        <Image url="@img/edit.gif" />
                      </image>
                   </ImageView>
                </children>
@@ -76,7 +76,7 @@
                   </Label>
                   <ImageView fx:id="imgGray" fitHeight="48.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@edit.gif" />
+                        <Image url="@img/edit.gif" />
                      </image>
                   </ImageView>
                </children>
@@ -98,7 +98,7 @@
                   </Label>
                   <ImageView fx:id="imgAnomaliaGray" fitHeight="48.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@edit.gif" />
+                        <Image url="@img/edit.gif" />
                      </image>
                   </ImageView>
                </children>
@@ -120,7 +120,7 @@
                   </Label>
                   <ImageView fx:id="imgStock" fitHeight="48.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@edit.gif" />
+                        <Image url="@img/edit.gif" />
                      </image>
                   </ImageView>
                </children>
@@ -142,7 +142,7 @@
                   </Label>
                   <ImageView fx:id="imgAnomaliaStock" fitHeight="48.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@edit.gif" />
+                        <Image url="@img/edit.gif" />
                      </image>
                   </ImageView>
                </children>
