@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import static app.functions.alert;
 import static app.functions.load;
 import static app.functions.printError;
+import static app.functions.writeOnce;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,8 +29,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class ctrlInputs implements Initializable {
-    @FXML
-    private Label title;
     @FXML
     public ArrayList<String>filesEtichete=new ArrayList<>();
     @FXML
@@ -46,7 +44,7 @@ public class ctrlInputs implements Initializable {
     @FXML
     private Button btnFoward;
     @FXML
-    private Button btnBackward;
+    private Button btnBackwards;
     @FXML
     private ImageView gifEtichette;
     @FXML
@@ -60,19 +58,12 @@ public class ctrlInputs implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        title.setText(objGlobals.version);
-        objGlobals.sourceEtichette="";
-        objGlobals.sourceJobSorter=new ArrayList<>();
-        objGlobals.sourceGray="";
-        objGlobals.sourceTiff="";
-        objGlobals.stockPrefix="";
-        objGlobals.stockNumber=0;
         etichette.setOnMouseClicked(event->etichette());
         jobSorter.setOnMouseClicked(event->jobSorter());
         gray.setOnMouseClicked(event->gray());
         tiff.setOnMouseClicked(event->tiff());
-        btnBackward.setOnAction(event->openPreviousView());
-        btnFoward.setOnAction(event->openFowardView());
+        btnBackwards.setOnAction(event->btnBackwards());
+        btnFoward.setOnAction(event->btnFoward());
         stockNumber.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             validateStockNumber(newValue);
         });        
@@ -142,7 +133,7 @@ public class ctrlInputs implements Initializable {
         }
     }    
     @FXML
-    public void openPreviousView() {
+    public void btnBackwards() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("viewWorkingFolder.fxml"));
             Parent root = loader.load();
@@ -151,10 +142,10 @@ public class ctrlInputs implements Initializable {
             Stage stage = (Stage) btnFoward.getScene().getWindow();
             stage.setScene(newScene);
             stage.show();
-        } catch (IOException e) {printError(e);}
+        } catch (IOException e) {printError(e,false);}
     }
     @FXML
-    public void openFowardView() {
+    public void btnFoward() {
         ArrayList<String> errors=new ArrayList<>();
         String stockText = stockNumber.getText();
         if(stockText.isEmpty()){
@@ -193,6 +184,12 @@ public class ctrlInputs implements Initializable {
         if(!errors.isEmpty()){
             alert("INFORMAZIONI MANCANTI",errors);
         }else{
+            writeOnce(objGlobals.sourceEtichetteFile, objGlobals.sourceEtichette);
+            writeOnce(objGlobals.sourceJobSorterFile, objGlobals.sourceJobSorter);
+            writeOnce(objGlobals.sourceGrayFile, objGlobals.sourceGray);
+            writeOnce(objGlobals.sourceTiffFile, objGlobals.sourceTiff);
+            writeOnce(objGlobals.stockPrefixFile, objGlobals.stockPrefix);
+            writeOnce(objGlobals.stockNumberFile, String.valueOf(objGlobals.stockNumber));
             load("viewStatusBar");
         }
     }

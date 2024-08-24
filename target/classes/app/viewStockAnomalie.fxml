@@ -6,17 +6,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllerOne">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ctrlStockAnomalie">
    <children>
       <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
-         <Label text="PER SISTEMARE LE ANOMALIE, PRENDI QUESTI SCATOLI E FAI CLICK IN AVANTI" textFill="#005075" VBox.vgrow="ALWAYS">
+         <Label text="SISTEMA I BARCODE E FAI CLICK IN AVANTI" textFill="#005075" VBox.vgrow="ALWAYS">
             <font>
                <Font name="System Bold" size="27.0" />
             </font>
@@ -24,9 +23,9 @@
       </VBox>
       <HBox fx:id="printPane" alignment="CENTER" prefHeight="62.0" prefWidth="281.0">
          <children>
-               <ImageView fitWidth="45.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+               <ImageView fitHeight="35.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                   <image>
-                     <Image url="@print.png" />
+                     <Image url="@img/print.png" />
                   </image>
                </ImageView>
                <Label prefHeight="61.0" prefWidth="167.0" text="STAMPA" textFill="#005075" HBox.hgrow="ALWAYS">
@@ -37,34 +36,21 @@
          </children>
       </HBox>
       <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
-         <TableView fx:id="tableView" minWidth="1200.0" VBox.vgrow="ALWAYS">
-            <columns>
-               <TableColumn fx:id="A" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="150.0" text="PRIMO BARCODE">
-                  <cellValueFactory>
-                     <PropertyValueFactory property="A" />
-                  </cellValueFactory>
-               </TableColumn>
-               <TableColumn fx:id="B" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="150.0" text="ULTIMO BARCODE">
-                  <cellValueFactory>
-                     <PropertyValueFactory property="B" />
-                  </cellValueFactory>
-               </TableColumn>
-               <TableColumn fx:id="C" maxWidth="1.7976931348623157E308" minWidth="250.0" prefWidth="611.0" text="RIFERIMENTO SCATOLO">
-                  <cellValueFactory>
-                     <PropertyValueFactory property="C" />
-                  </cellValueFactory>
-               </TableColumn>
-               <TableColumn fx:id="D" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="274.0" text="RIFERIMENTO PEDANA">
-                  <cellValueFactory>
-                     <PropertyValueFactory property="D" />
-                  </cellValueFactory>
-               </TableColumn>
-            </columns>
+         <TableView fx:id="tableView" editable="true" VBox.vgrow="ALWAYS">
+               <columns>
+                  <TableColumn fx:id="r" editable="false" maxWidth="50.0" minWidth="50.0" text="RIGA" />
+                  <TableColumn fx:id="A" editable="true" minWidth="100.0" text="PRIMO BARCODE" />
+                  <TableColumn fx:id="B" editable="true" minWidth="100.0" text="ULTIMO BARCODE" />
+                  <TableColumn fx:id="C" editable="false" minWidth="175.0" text="RIFERIMENTO SCATOLO" />
+                  <TableColumn fx:id="D" editable="false" minWidth="175.0" text="RIFERIMENTO PEDANA" />
+                  <TableColumn fx:id="E" editable="false" minWidth="175.0" text="ANOMALIA" />
+                  <TableColumn fx:id="deleteColumn" text="ELIMINA RIGA" />
+               </columns>
          </TableView>
       </VBox>
       <VBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="firstButton" alignment="CENTER" onAction="#viewTwo" prefHeight="59.0" prefWidth="263.0" style="-fx-background-color: #005075;" text="AVANTI" textFill="WHITE" VBox.vgrow="ALWAYS">
+            <Button fx:id="btnFoward" alignment="CENTER" minHeight="59.0" minWidth="263.0" prefHeight="59.0" prefWidth="263.0" style="-fx-background-color: #005075;" text="AVANTI" textFill="WHITE" VBox.vgrow="NEVER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

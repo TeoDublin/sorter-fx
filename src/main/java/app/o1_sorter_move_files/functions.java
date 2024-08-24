@@ -9,11 +9,8 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.security.MessageDigest;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
-import app.objAnomalies;
 import app.objGlobals;
 
 public class functions {
@@ -56,7 +53,7 @@ public class functions {
 
         for (String from : objGlobals.sourceJobSorter) {
             File fileFrom = new File(from);
-            File folderTo = new File(objGlobals.jogSorterFolder,"JOB-SORTER");
+            File folderTo = new File(objGlobals.jogSorterFolder);
             String to = from.replace(fileFrom.getParent(), folderTo.getPath());
             File fileTo = new File(to);
             if(!fileTo.exists()){
@@ -65,7 +62,7 @@ public class functions {
         }
         
         File fileFrom = new File(objGlobals.sourceEtichette);
-        File folderTo = new File(objGlobals.etichetteFolder,"ETICHETTE");
+        File folderTo = new File(objGlobals.etichetteFolder);
         String to = objGlobals.sourceEtichette.replace(fileFrom.getParent(), folderTo.getPath());
         File fileTo = new File(to);
         if(!fileTo.exists()){

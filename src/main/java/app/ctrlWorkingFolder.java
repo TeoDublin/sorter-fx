@@ -8,8 +8,6 @@ import static app.functions.alert;
 import static app.functions.load;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -18,18 +16,13 @@ import javafx.stage.Stage;
 
 public class ctrlWorkingFolder implements Initializable {
     @FXML
-    private Label title;
-    @FXML
     private HBox workingFolder;
     @FXML
     private ImageView gifImageView;
-    @FXML
-    private Button btnFoward;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         objGlobals.workingFolder="";
         workingFolder.setOnMouseClicked(event->workingFolder());
-        title.setText(objGlobals.version);
     }
     @FXML
     public void workingFolder(){
@@ -41,14 +34,20 @@ public class ctrlWorkingFolder implements Initializable {
             objGlobals.workingFolder = selectedDirectory.getAbsolutePath();
             gifImageView.setImage(new Image(App.class.getResource("img/done.gif").toExternalForm()));
         }
+        btnFoward();
     }
     @FXML
-    public void openNextView() {
+    public void btnFoward() {
         if(objGlobals.workingFolder.isEmpty()){
-            alert("INFORMAZIONI MANCANTI","SELEZIONA LA CARTELLA DOVE SARANNO LAVORATI I FILE");
+            alert("INFORMAZIONI MANCANTI","SELEZIONA LA CARTELLA DOVE I FILE SARANNO COPIATI E LAVORATI");
             gifImageView.setImage(new Image(App.class.getResource("img/error.gif").toExternalForm()));
         }else{
-            load("viewInputs");
+            if(objGlobals.hasInputs()){
+                load("viewStatusBar");
+            }
+            else{
+                load("viewInputs",450,500);
+            }
         }
     }
 

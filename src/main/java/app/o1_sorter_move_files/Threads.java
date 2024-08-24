@@ -2,7 +2,7 @@ package app.o1_sorter_move_files;
 
 import java.util.ArrayList;
 
-import static app.functions.printError;
+import static app.functions.logError;
 import app.objGlobals;
 
 public class Threads extends functions{
@@ -15,8 +15,8 @@ public class Threads extends functions{
             for(ThreaCopyFiles runningThread:list){
                 if(!runningThread.isRunning()&&!toDelete.contains(runningThread)){
                     if (runningThread.isCompletedSuccessfully()) {} 
-                    else if (runningThread.hasError()) { printError("Thread error "+runningThread.from, runningThread.getException());} 
-                    else { printError("Thread error dont know why "+runningThread.from, new Exception());}
+                    else if (runningThread.hasError()) { logError("Thread error "+runningThread.from, runningThread.getException());} 
+                    else { logError("Thread error dont know why "+runningThread.from, new Exception());}
                     toDelete.add(runningThread);runningThreads--;break;
                 }
             }
@@ -33,8 +33,8 @@ public class Threads extends functions{
             for(ThreaCopyFiles runningThread:list){
                 if(!runningThread.isRunning()&&!toDelete.contains(runningThread)){
                     if (runningThread.isCompletedSuccessfully()) { 
-                    } else if (runningThread.hasError()) { printError("Thread error "+runningThread.from, runningThread.getException());
-                    } else { printError("Thread error dont know why "+runningThread.from, new Exception());}
+                    } else if (runningThread.hasError()) { logError("Thread error "+runningThread.from, runningThread.getException());
+                    } else { logError("Thread error dont know why "+runningThread.from, new Exception());}
                     toDelete.add(runningThread);runningThreads--;
                 }
             }

@@ -102,7 +102,7 @@ public class ctrlMoveFilesAnomalie implements Initializable{
                     writer.append(line);
                 }
             } catch (IOException e) {
-                printError(e);
+                printError(e,false);
             }
         }
     }
@@ -121,7 +121,7 @@ public class ctrlMoveFilesAnomalie implements Initializable{
         for (String from : objAnomalies.moveFiles) {
             if(from.endsWith(".csv")){
                 File fileFrom = new File(from);
-                File folderTo = new File(objGlobals.jogSorterFolder,"JOB-SORTER");
+                File folderTo = new File(objGlobals.jogSorterFolder);
                 String to = from.replace(fileFrom.getParent(), folderTo.getPath());
                 File fileTo = new File(to);
                 if(!fileTo.exists()){
@@ -129,10 +129,7 @@ public class ctrlMoveFilesAnomalie implements Initializable{
                 }
             }
             else if(from.endsWith(".xls")||from.endsWith(".xlsx")){
-                File fileFrom = new File(objGlobals.sourceEtichette);
-                File folderTo = new File(objGlobals.etichetteFolder,"ETICHETTE");
-                String to = objGlobals.sourceEtichette.replace(fileFrom.getParent(), folderTo.getPath());
-                File fileTo = new File(to);
+                File fileTo = new File(objGlobals.targetEtichette);
                 if(!fileTo.exists()){
                     moveFiles.add(from);
                 }

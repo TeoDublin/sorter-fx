@@ -1,6 +1,7 @@
 package app;
 
 import static app.functions.load;
+import static app.functions.printError;
 import javafx.application.Application;
 import javafx.stage.Stage;
 /**
@@ -10,9 +11,19 @@ public class App extends Application {
     
     @Override
     public void start(@SuppressWarnings("exports") Stage _stage) {
-        load(_stage,"viewStatusBar");
+        try {
+            load(_stage,"viewWorkingFolder",510,300);
+        } catch (Exception e) {
+            printError(e,true);
+        }
+        
     }
+    
     public static void main(String[] args) {
-        launch();
+        try {
+            launch();
+        } catch (Exception e) {
+            printError(e,true);
+        }
     }
 }
