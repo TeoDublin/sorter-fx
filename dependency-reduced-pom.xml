@@ -16,18 +16,11 @@
         <version>0.0.8</version>
         <configuration>
           <mainClass>app.App</mainClass>
-          <launcher>MyAppLauncher</launcher>
-          <jvmArgs>
-            <jvmArg>--module-path</jvmArg>
-            <jvmArg>C:/Java/javafx-sdk-22.0.2/lib</jvmArg>
-            <jvmArg>--add-modules</jvmArg>
-            <jvmArg>javafx.controls,javafx.fxml</jvmArg>
-          </jvmArgs>
         </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.6.0</version>
+        <version>3.5.0</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -35,38 +28,20 @@
               <goal>shade</goal>
             </goals>
             <configuration>
-              <filters>
-                <filter>
-                  <artifact>*:*</artifact>
-                  <excludes>
-                    <exclude>META-INF/*.SF</exclude>
-                    <exclude>META-INF/*.DSA</exclude>
-                    <exclude>META-INF/*.RSA</exclude>
-                  </excludes>
-                </filter>
-              </filters>
-              <minimizeJar>true</minimizeJar>
-              <createDependencyInformation>true</createDependencyInformation>
+              <transformers>
+                <transformer>
+                  <mainClass>app.App</mainClass>
+                </transformer>
+              </transformers>
             </configuration>
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.4.2</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <mainClass>app.App</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
   <properties>
-    <maven.compiler.target>17</maven.compiler.target>
-    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>22</maven.compiler.target>
+    <maven.compiler.source>22</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

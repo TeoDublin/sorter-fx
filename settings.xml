@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\teodu\Desktop\Projects\sorter-fx\target\sorter-fx-1.0.0.jar</jar>
+  <outfile>C:\Users\teodu\Desktop\Projects\sorter-fx\target\sorterFx.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>C:\Users\teodu\Desktop\Projects\sorter-fx\src\main\resources\app\img\icon.ico</icon>
+  <jre>
+    <path>C:\Java\jdk22;%PATH%;</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion>22.0.2</minVersion>
+    <maxVersion></maxVersion>
+    <opt>--module-path C:/Java/javafx-sdk-22.0.2/lib --add-modules javafx.controls,javafx.fxml </opt>
+  </jre>
+</launch4jConfig>

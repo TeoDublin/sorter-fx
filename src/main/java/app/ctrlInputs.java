@@ -190,6 +190,7 @@ public class ctrlInputs implements Initializable {
             writeOnce(objGlobals.sourceTiffFile, objGlobals.sourceTiff);
             writeOnce(objGlobals.stockPrefixFile, objGlobals.stockPrefix);
             writeOnce(objGlobals.stockNumberFile, String.valueOf(objGlobals.stockNumber));
+            objGlobals.variables();
             load("viewStatusBar");
         }
     }

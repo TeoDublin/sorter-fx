@@ -132,9 +132,6 @@ public class objGlobals {
             notExpectedFolder=notExpectedFolder();
             targetEtichetteLog=targetEtichetteLog();
             targetEtichette=targetEtichette();
-            if(targetEtichetteLog.exists()){
-                targetEtichette=targetEtichette();
-            }
             allBlackFiles=allBlackFiles();
             sorterExport=sorterExport();
             

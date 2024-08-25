@@ -6,5 +6,5 @@
     "java.project.referencedLibraries": [
         "C:/Java/javafx-sdk-22.0.2/lib/*.jar",
     ],
-    "java.debug.settings.onBuildFailureProceed": true,
+    "java.debug.settings.onBuildFailureProceed": true
 }
